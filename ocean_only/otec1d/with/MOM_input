@@ -340,10 +340,10 @@ BUOY_CONFIG = "NONE"            ! default = "zero"
                                 ! options include (file), (zero), (linear), (USER), (BFB) and (NONE).
 
 ! === module MOM_otec ===
-W_OTEC = 0.0                    ! OTEC pumping rate [m s-1]
+W_OTEC = 0.001                    ! OTEC pumping rate [m s-1]
 
 ! === module MOM_main (MOM_driver) ===
-DAYMAX = 50.0                   !   [days]
+DAYMAX = 10.0                    !   [days]
                                 ! The final time of the whole simulation, in units of TIMEUNIT seconds.  This
                                 ! also sets the potential end time of the present run segment if the end time is
                                 ! not set via ocean_solo_nml in input.nml.

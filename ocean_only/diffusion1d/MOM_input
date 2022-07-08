@@ -169,9 +169,9 @@ TS_CONFIG = "linear"            !
                                 !     rossby_front - a mixed layer front in thermal wind balance.
                                 !     SCM_CVMix_tests - used in the SCM CVMix tests.
                                 !     USER - call a user modified routine.
-T_TOP = 25.0                    !   [degC]
+T_TOP = 30.0                    !   [degC]
                                 ! Initial temperature of the top surface.
-T_RANGE = 0.0                  !   [degC]
+T_RANGE = 15.0                  !   [degC]
                                 ! Initial temperature difference (top-bottom).
 S_TOP = 0.0                     !   [PSU]
                                 ! Initial salinity of the top surface.
@@ -303,7 +303,7 @@ BBL_EFFIC = 0.0                 !   [nondim] default = 0.2
 
 ! === module MOM_bkgnd_mixing ===
 ! Adding static vertical background mixing coefficients
-KD = 0.0                        !   [m2 s-1] default = 0.0
+KD = 0.2                        !   [m2 s-1] default = 0.0
                                 ! The background diapycnal diffusivity of density in the interior. Zero or the
                                 ! molecular value, ~1e-7 m2 s-1, may be used.
 
@@ -339,11 +339,8 @@ BUOY_CONFIG = "NONE"            ! default = "zero"
                                 ! The character string that indicates how buoyancy forcing is specified. Valid
                                 ! options include (file), (zero), (linear), (USER), (BFB) and (NONE).
 
-! === module MOM_otec ===
-W_OTEC = 0.0                    ! OTEC pumping rate [m s-1]
-
 ! === module MOM_main (MOM_driver) ===
-DAYMAX = 50.0                   !   [days]
+DAYMAX = 50.0                    !   [days]
                                 ! The final time of the whole simulation, in units of TIMEUNIT seconds.  This
                                 ! also sets the potential end time of the present run segment if the end time is
                                 ! not set via ocean_solo_nml in input.nml.
