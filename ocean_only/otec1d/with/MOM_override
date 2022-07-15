@@ -1,4 +1,4 @@
 ! Z* coordinate regridding + initialization
-USE_REGRIDDING = True
+USE_REGRIDDING = False
 REGRIDDING_COORDINATE_MODE = "Z*"
 
