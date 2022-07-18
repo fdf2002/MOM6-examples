@@ -1,4 +1,4 @@
 ! Z* coordinate regridding + initialization
-USE_REGRIDDING = False
+USE_REGRIDDING = True
 REGRIDDING_COORDINATE_MODE = "Z*"
-
+REGRID_TIME_SCALE = 2592000.0
