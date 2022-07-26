@@ -298,9 +298,6 @@ DTBT = 60.0                     !   [s or nondim] default = -0.98
 ! The following parameters are used for diabatic processes.
 
 ! === module MOM_otec ===
-W_OTEC = 1.0E-04                !   [m s-1] default = 0.0
-                                ! The constant OTEC pumping rate or a rescaling or 0 to disable the OTEC
-                                ! pumping.
 
 ! === module MOM_set_diffusivity ===
 BBL_EFFIC = 0.0                 !   [nondim] default = 0.2

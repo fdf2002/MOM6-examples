@@ -94,7 +94,7 @@ ROTATION = "betaplane"          ! default = "2omegasinlat"
 
 ! === module MOM_verticalGrid ===
 ! Parameters providing information about the vertical grid.
-NK = 10                         !   [nondim]
+NK = 11                         !   [nondim]
                                 ! The number of model layers.
 
 ! === module MOM_EOS ===
@@ -102,9 +102,6 @@ EQN_OF_STATE = "LINEAR"         ! default = "WRIGHT"
                                 ! EQN_OF_STATE determines which ocean equation of state should be used.
                                 ! Currently, the valid choices are "LINEAR", "UNESCO", "WRIGHT", "NEMO" and
                                 ! "TEOS10". This is only used if USE_EOS is true.
-DRHO_DS = 0.0                   !   [kg m-3 PSU-1] default = 0.8
-                                ! When EQN_OF_STATE=LINEAR, this is the partial derivative of density with
-                                ! salinity.
 
 ! === module MOM_tracer_flow_control ===
 
@@ -142,12 +139,17 @@ REGRIDDING_COORDINATE_MODE = "Z*" ! default = "LAYER"
                                 !  HYBGEN - Hybrid coordinate from the Hycom hybgen code
                                 !  SLIGHT - stretched coordinates above continuous isopycnal
                                 !  ADAPTIVE - optimize for smooth neutral density surfaces
-!ALE_RESOLUTION = 10*200.0      !   [m]
+!ALE_RESOLUTION = 11*181.8181818181818 !   [m]
                                 ! The distribution of vertical resolution for the target
                                 ! grid used for Eulerian-like coordinates. For example,
                                 ! in z-coordinate mode, the parameter is a list of level
                                 ! thicknesses (in m). In sigma-coordinate mode, the list
                                 ! is of non-dimensional fractions of the water column.
+REGRID_TIME_SCALE = 2.592E+06   !   [s] default = 0.0
+                                ! The time-scale used in blending between the current (old) grid and the target
+                                ! (new) grid. A short time-scale favors the target grid (0. or anything less
+                                ! than DT_THERM) has no memory of the old grid. A very long time-scale makes the
+                                ! model more Lagrangian.
 
 ! === module MOM_state_initialization ===
 TS_CONFIG = "linear"            !
@@ -172,11 +174,11 @@ TS_CONFIG = "linear"            !
                                 !     USER - call a user modified routine.
 T_TOP = 25.0                    !   [degC]
                                 ! Initial temperature of the top surface.
-T_RANGE = 0.0                   !   [degC]
+T_RANGE = 25.0                  !   [degC]
                                 ! Initial temperature difference (top-bottom).
-S_TOP = 0.0                     !   [PSU]
+S_TOP = 36.0                    !   [PSU]
                                 ! Initial salinity of the top surface.
-S_RANGE = 0.0                   !   [PSU]
+S_RANGE = 2.0                   !   [PSU]
                                 ! Initial salinity difference (top-bottom).
 
 ! === module MOM_diag_mediator ===
@@ -223,7 +225,7 @@ BE = 0.7                        !   [nondim] default = 0.6
 ! === module MOM_continuity ===
 
 ! === module MOM_continuity_PPM ===
-ETA_TOLERANCE = 1.0E-12         !   [m] default = 5.0E-10
+ETA_TOLERANCE = 1.0E-12         !   [m] default = 5.500000000000001E-10
                                 ! The tolerance for the differences between the barotropic and baroclinic
                                 ! estimates of the sea surface height due to the fluxes through each face.  The
                                 ! total tolerance for SSH is 4 times this value.  The default is
@@ -298,9 +300,8 @@ DTBT = 60.0                     !   [s or nondim] default = -0.98
 ! The following parameters are used for diabatic processes.
 
 ! === module MOM_otec ===
-W_OTEC = 0.001                  !   [m s-1] default = 0.0
-                                ! The constant OTEC pumping rate or a rescaling or 0 to disable the OTEC
-                                ! pumping.
+OTEC_W_CW = 1.0E-04             !   [m s-1] default = 0.0
+                                ! The constant OTEC cold-water pumping rate or 0 to disable OTEC.
 
 ! === module MOM_set_diffusivity ===
 BBL_EFFIC = 0.0                 !   [nondim] default = 0.2
@@ -346,7 +347,7 @@ BUOY_CONFIG = "NONE"            ! default = "zero"
                                 ! (SCM_CVmix_tests), (BFB), (dumbbell), (USER) and (NONE).
 
 ! === module MOM_main (MOM_driver) ===
-DAYMAX = 10.0                   !   [days]
+DAYMAX = 60.0                   !   [days]
                                 ! The final time of the whole simulation, in units of TIMEUNIT seconds.  This
                                 ! also sets the potential end time of the present run segment if the end time is
                                 ! not set via ocean_solo_nml in input.nml.

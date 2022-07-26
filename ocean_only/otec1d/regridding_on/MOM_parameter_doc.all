@@ -1221,9 +1221,14 @@ USE_CVMix_CONVECTION = False    !   [Boolean] default = False
                                 ! parameters are contained in the CVMix_CONVECTION% parameter block.
 
 ! === module MOM_otec ===
-W_OTEC = 1.0E-04                !   [m s-1] default = 0.0
-                                ! The constant OTEC pumping rate or a rescaling or 0 to disable the OTEC
-                                ! pumping.
+OTEC_W_CW = 0.0                 !   [m s-1] default = 0.0
+                                ! The constant OTEC cold-water pumping rate or 0 to disable OTEC.
+OTEC_GAMMA = 1.0                !   [nondim] default = 1.0
+                                ! The ratio of warm- to cold-water OTEC pumping rates.
+OTEC_COLD_DEPTH = 1000.0        !   [m] default = 1000.0
+                                ! The depth of the cold-water intake for OTEC.
+OTEC_WARM_DEPTH = 20.0          !   [m] default = 20.0
+                                ! The depth of the warm-water intake for OTEC.
 
 ! === module MOM_set_diffusivity ===
 FLUX_RI_MAX = 0.2               !   [nondim] default = 0.2
