@@ -479,7 +479,7 @@ REMAP_AFTER_INITIALIZATION = True !   [Boolean] default = True
                                 ! If true, applies regridding and remapping immediately after initialization so
                                 ! that the state is ALE consistent. This is a legacy step and should not be
                                 ! needed if the initialization is consistent with the coordinate mode.
-REGRID_TIME_SCALE = 2.592E+06   !   [s] default = 0.0
+REGRID_TIME_SCALE = 0.0         !   [s] default = 0.0
                                 ! The time-scale used in blending between the current (old) grid and the target
                                 ! (new) grid. A short time-scale favors the target grid (0. or anything less
                                 ! than DT_THERM) has no memory of the old grid. A very long time-scale makes the
@@ -1217,7 +1217,7 @@ USE_CVMix_CONVECTION = False    !   [Boolean] default = False
                                 ! parameters are contained in the CVMix_CONVECTION% parameter block.
 
 ! === module MOM_otec ===
-OTEC_W_CW = 1.58548959919E-07   !   [m s-1] default = 0.0
+OTEC_W_CW = 1.0E-04             !   [m s-1] default = 0.0
                                 ! The constant OTEC cold-water pumping rate or 0 to disable OTEC.
 OTEC_GAMMA = 1.0                !   [nondim] default = 1.0
                                 ! The ratio of warm- to cold-water OTEC pumping rates.
@@ -1533,7 +1533,7 @@ USE_WAVES = False               !   [Boolean] default = False
 DT_FORCING = 1200.0             !   [s] default = 1200.0
                                 ! The time step for changing forcing, coupling with other components, or
                                 ! potentially writing certain diagnostics. The default value is given by DT.
-DAYMAX = 365.0                  !   [days]
+DAYMAX = 30.0                   !   [days]
                                 ! The final time of the whole simulation, in units of TIMEUNIT seconds.  This
                                 ! also sets the potential end time of the present run segment if the end time is
                                 ! not set via ocean_solo_nml in input.nml.
