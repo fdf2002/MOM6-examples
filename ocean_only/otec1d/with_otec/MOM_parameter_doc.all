@@ -285,7 +285,7 @@ ANGSTROM = 1.0E-10              !   [m] default = 1.0E-10
                                 ! The minimum layer thickness, usually one-Angstrom.
 H_TO_M = 1.0                    !   [m H-1] default = 1.0
                                 ! A constant that translates the model's internal units of thickness into m.
-NK = 63                         !   [nondim]
+NK = 240                        !   [nondim]
                                 ! The number of model layers.
 
 ! === module MOM_tracer_registry ===
@@ -368,7 +368,7 @@ USE_NW2_TRACERS = False         !   [Boolean] default = False
                                 ! If true, use the NeverWorld2 tracers.
 
 ! === module MOM_coord_initialization ===
-COORD_CONFIG = "file"           ! default = "none"
+COORD_CONFIG = "none"           ! default = "none"
                                 ! This specifies how layers are to be defined:
                                 !     ALE or none - used to avoid defining layers in ALE mode
                                 !     file - read coordinate information from the file
@@ -386,12 +386,8 @@ COORD_CONFIG = "file"           ! default = "none"
                                 !     ts_profile - use temperature and salinity profiles
                                 !       (read from COORD_FILE) to set layer densities.
                                 !     USER - call a user modified routine.
-GFS = 0.98                      !   [m s-2] default = 9.8
+GFS = 9.8                       !   [m s-2] default = 9.8
                                 ! The reduced gravity at the free surface.
-COORD_FILE = "../isopyc_coords.nc" !
-                                ! The file from which the coordinate densities are read.
-COORD_VAR = "Layer"             ! default = "Layer"
-                                ! The variable in COORD_FILE that is to be used for the coordinate densities.
 REMAP_UV_USING_OLD_ALG = False  !   [Boolean] default = False
                                 ! If true, uses the old remapping-via-a-delta-z method for remapping u and v. If
                                 ! false, uses the new method that remaps between grids described by an old and
@@ -423,7 +419,7 @@ ALE_COORDINATE_CONFIG = "UNIFORM" ! default = "UNIFORM"
                                 !                the filename and two variable names, separated
                                 !                by a comma or space, for sigma-2 and dz. e.g.
                                 !                HYBRID:vgrid.nc,sigma2,dz
-!ALE_RESOLUTION = 63*95.23809523809524 !   [m]
+!ALE_RESOLUTION = 240*25.0      !   [m]
                                 ! The distribution of vertical resolution for the target
                                 ! grid used for Eulerian-like coordinates. For example,
                                 ! in z-coordinate mode, the parameter is a list of level
@@ -520,7 +516,7 @@ Z_INIT_FILE_SALT_VAR = "SALT"   ! default = "salt"
                                 ! The name of the salinity variable in SALT_Z_INIT_FILE.
 Z_INIT_HOMOGENIZE = True        !   [Boolean] default = False
                                 ! If True, then horizontally homogenize the interpolated initial conditions.
-Z_INIT_ALE_REMAPPING = False    !   [Boolean] default = False
+Z_INIT_ALE_REMAPPING = True     !   [Boolean] default = False
                                 ! If True, then remap straight to model coordinate from file.
 Z_INIT_REMAPPING_SCHEME = "PPM_IH4" ! default = "PPM_IH4"
                                 ! The remapping scheme to use if using Z_INIT_ALE_REMAPPING is True.
@@ -541,20 +537,6 @@ HOR_REGRID_2018_ANSWERS = False !   [Boolean] default = False
                                 ! If true, use the order of arithmetic for horizonal regridding that recovers
                                 ! the answers from the end of 2018.  Otherwise, use rotationally symmetric forms
                                 ! of the same expressions.
-ADJUST_THICKNESS = True         !   [Boolean] default = False
-                                ! If true, all mass below the bottom removed if the topography is shallower than
-                                ! the thickness input file would indicate.
-THICKNESS_TOLERANCE = 0.1       !   [m] default = 0.1
-                                ! A parameter that controls the tolerance when adjusting the thickness to fit
-                                ! the bathymetry. Used when ADJUST_THICKNESS=True.
-FIT_TO_TARGET_DENSITY_IC = True !   [Boolean] default = True
-                                ! If true, all the interior layers are adjusted to their target densities using
-                                ! mostly temperature This approach can be problematic, particularly in the high
-                                ! latitudes.
-LAYER_Z_INIT_IC_EXTRAP_BUG = True !   [Boolean] default = True
-                                ! If true use an expression with a vertical indexing bug for extrapolating the
-                                ! densities at the bottom of unstable profiles from data when finding the
-                                ! initial interface locations in layered mode from a dataset of T and S.
 DEPRESS_INITIAL_SURFACE = False !   [Boolean] default = False
                                 ! If true,  depress the initial surface to avoid huge tsunamis when a large
                                 ! surface pressure is applied.
@@ -829,7 +811,7 @@ UPWIND_1ST_CONTINUITY = False   !   [Boolean] default = False
                                 ! If true, CONTINUITY_PPM becomes a 1st-order upwind continuity solver.  This
                                 ! scheme is highly diffusive but may be useful for debugging or in single-column
                                 ! mode where its minimal stencil is useful.
-ETA_TOLERANCE = 1.0E-12         !   [m] default = 3.15E-09
+ETA_TOLERANCE = 1.0E-12         !   [m] default = 1.2E-08
                                 ! The tolerance for the differences between the barotropic and baroclinic
                                 ! estimates of the sea surface height due to the fluxes through each face.  The
                                 ! total tolerance for SSH is 4 times this value.  The default is

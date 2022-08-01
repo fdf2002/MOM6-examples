@@ -107,7 +107,7 @@ ROTATION = "betaplane"          ! default = "2omegasinlat"
 
 ! === module MOM_verticalGrid ===
 ! Parameters providing information about the vertical grid.
-NK = 63                         !   [nondim]
+NK = 240                         !   [nondim]
                                 ! The number of model layers.
 
 ! === module MOM_EOS ===
@@ -125,7 +125,7 @@ DRHO_DS = 0.8                   !   [kg m-3 PSU-1] default = 0.8
 ! === module MOM_tracer_flow_control ===
 
 ! === module MOM_coord_initialization ===
-COORD_CONFIG = "file"         ! default = "none"
+COORD_CONFIG = "none"         ! default = "none"
                                 ! This specifies how layers are to be defined:
                                 !     ALE or none - used to avoid defining layers in ALE mode
                                 !     file - read coordinate information from the file
@@ -143,12 +143,6 @@ COORD_CONFIG = "file"         ! default = "none"
                                 !     ts_profile - use temperature and salinity profiles
                                 !       (read from COORD_FILE) to set layer densities.
                                 !     USER - call a user modified routine.
-COORD_FILE = "../isopyc_coords.nc"
-
-LIGHTEST_DENSITY = 1034.0       !   [kg m-3] default = 1035.0
-                                ! The reference potential density used for the surface interface.
-GFS = 0.98                      !   [m s-2] default = 9.8
-                                ! The reduced gravity at the free surface.
 
 ! === module MOM_state_initialization ===
 INIT_LAYERS_FROM_Z_FILE = True  !   [Boolean] default = False
@@ -164,43 +158,13 @@ Z_INIT_FILE_PTEMP_VAR = "PTEMP" ! default = "ptemp"
                                 ! The name of the potential temperature variable in TEMP_Z_INIT_FILE.
 Z_INIT_FILE_SALT_VAR = "SALT"   ! default = "salt"
                                 ! The name of the salinity variable in SALT_Z_INIT_FILE.
+Z_INIT_ALE_REMAPPING = True     !   [Boolean] default = False
+                                ! If True, then remap straight to model coordinate from file.
 Z_INIT_HOMOGENIZE = True        !   [Boolean] default = False
                                 ! If True, then horizontally homogenize the interpolated initial conditions.
 ADJUST_THICKNESS = True         !   [Boolean] default = False
                                 ! If true, all mass below the bottom removed if the topography is shallower than
                                 ! the thickness input file would indicate.
-
-! === module MOM_state_initialization ===
-TS_CONFIG = "file"            !
-                                ! A string that determines how the initial tempertures and salinities are
-                                ! specified for a new run:
-                                !     file - read velocities from the file specified
-                                !       by (TS_FILE).
-                                !     fit - find the temperatures that are consistent with
-                                !       the layer densities and salinity S_REF.
-                                !     TS_profile - use temperature and salinity profiles
-                                !       (read from TS_FILE) to set layer densities.
-                                !     benchmark - use the benchmark test case T & S.
-                                !     linear - linear in logical layer space.
-                                !     DOME2D - 2D DOME initialization.
-                                !     ISOMIP - ISOMIP initialization.
-                                !     adjustment2d - 2d lock exchange T/S ICs.
-                                !     sloshing - sloshing mode T/S ICs.
-                                !     seamount - no motion test with seamount ICs.
-                                !     dumbbell - sloshing channel ICs.
-                                !     rossby_front - a mixed layer front in thermal wind balance.
-                                !     SCM_CVMix_tests - used in the SCM CVMix tests.
-                                !     USER - call a user modified routine.
-TS_FILE = "ICs.nc"
-
-T_TOP = 25.0                    !   [degC]
-                                ! Initial temperature of the top surface.
-T_RANGE = 25.0                  !   [degC]
-                                ! Initial temperature difference (top-bottom).
-S_TOP = 36.0                     !   [PSU]
-                                ! Initial salinity of the top surface.
-S_RANGE = 2.0                   !   [PSU]
-                                ! Initial salinity difference (top-bottom).
 
 ! === module MOM_diag_mediator ===
 
