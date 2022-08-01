@@ -107,7 +107,7 @@ ROTATION = "betaplane"          ! default = "2omegasinlat"
 
 ! === module MOM_verticalGrid ===
 ! Parameters providing information about the vertical grid.
-NK = 63                         !   [nondim]
+NK = 240                         !   [nondim]
                                 ! The number of model layers.
 
 ! === module MOM_EOS ===
