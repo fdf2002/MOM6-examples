@@ -328,11 +328,11 @@ BUOY_CONFIG = "NONE"            ! default = "zero"
                                 ! options include (file), (zero), (linear), (USER), (BFB) and (NONE).
 
 ! === module MOM_otec ===
-OTEC_W_CW  = 0.0001               ! OTEC pumping rate [m s-1]
-OTEC_GAMMA = 1.0                 ! Ratio of warm- to cold-water volume pumping rates for OTEC
-OTEC_COLD_DEPTH = 1000.0              ! Depth of the OTEC cold-water intake [m]
-OTEC_WARM_DEPTH = 20.0
-OTEC_OUT_DEPTH = 500.0
+OTEC_W_CW  = 0.0001              ! OTEC pumping rate [m s-1]
+OTEC_GAMMA = 1.5                 ! Ratio of warm- to cold-water volume pumping rates for OTEC
+OTEC_COLD_DEPTH = 1000.0         ! Depth of the OTEC cold-water intake [m]
+OTEC_WARM_DEPTH = 20.0           ! Depth of the OTEC warm-water intake [m]
+OTEC_OUT_DEPTH = 500.0           ! Depth of the OTEC water discharge [m]
 
 ! === module MOM_main (MOM_driver) ===
 DAYMAX = 30.0                    !   [days]
